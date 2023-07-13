@@ -1,52 +1,55 @@
 package pro.sky.collections.skypro_collections;
 
 
+import java.util.Objects;
 
 public class Employee {
-    private final String fio;
-    private int department;
-    private float salary;
-    private static int counter;
-    private final int id;
+    private String firstName;
+    private  String lastName;
 
     //Конструктор
-    public Employee(String fio, int department, float salary) {
-        this.fio = fio;
-        this.department = department;
-        this.salary = salary;
-        id = ++counter;
+
+
+    public Employee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    //Геттеры
-    public String getFio() {
-        return fio;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public int getDepartment() {
-        return department;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public float getSalary() {
-        return salary;
+    public String getLastName() {
+        return lastName;
     }
 
-    //Сетттеры
-    public void setSalary(float salary) {
-        this.salary = salary;
-    }
-
-    public void setDepartment(int department) {
-        this.department = department;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName);
+    }
+
+    @Override
     public String toString() {
-        return "" +
-                "id = " + id +
-                " ФИО = '" + fio + '\'' +
-                ", Отдел = " + department +
-                ", Зарплата = " + salary +
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 
